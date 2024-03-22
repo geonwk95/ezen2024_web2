@@ -15,6 +15,10 @@ import Clock from './chapter4/Clock';
 // chapter5 실습
 import CommentList from './chapter5/CommentList';
 
+// chapter7 예제/실습
+import Counter from './chapter7/Counter'; // 예제
+import UseStateList from './chapter7/UseStateList';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render( // !!!!!!!!!!!!! 여기가 렌더링 되는 곳 ~~~~~~~~~~~
 //   <React.StrictMode> // 엄격한 실행 모드 : 유효성 검사
@@ -29,7 +33,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // } , 1000 )
 root.render(
   <React.StrictMode>
-    <CommentList />
+    {/* <CommentList /> */}
+    {/* <Counter /> */}
+    <UseStateList />
   </React.StrictMode>
   
 )
