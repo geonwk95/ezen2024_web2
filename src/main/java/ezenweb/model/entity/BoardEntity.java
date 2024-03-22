@@ -19,9 +19,14 @@ public class BoardEntity { // 테이블
     @Id // PK
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private int bno; // 게시물번호
-    @Column(name ="title" , length = 10 , nullable = false )
     private String btitle; // 게시물제목
-    @Column(columnDefinition = "longtext")
+    @JoinColumn // FK
+    @ManyToOne  // 다수가 하나에게 M : 1
+    private MemberEntity memberEntity;
+}
+
+/*
+@Column(columnDefinition = "longtext")
     private String btitle2;
     @Column()
     private boolean 필드0;
@@ -34,4 +39,4 @@ public class BoardEntity { // 테이블
     private Date 필드7;
     private LocalDateTime 필드8;
 
-}
+ */
