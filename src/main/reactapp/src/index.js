@@ -18,6 +18,13 @@ import CommentList from './chapter5/CommentList';
 // chapter7 예제/실습
 import Counter from './chapter7/Counter'; // 예제
 import UseStateList from './chapter7/UseStateList';
+import Counter2 from './chapter7/Counter2';
+
+// chapter8 실습
+import ConfirmButton from './chapter8/ConfirmButton';
+
+// chapter9 실습
+import LandingPage from './chapter9/LandingPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render( // !!!!!!!!!!!!! 여기가 렌더링 되는 곳 ~~~~~~~~~~~
@@ -35,7 +42,10 @@ root.render(
   <React.StrictMode>
     {/* <CommentList /> */}
     {/* <Counter /> */}
-    <UseStateList />
+    <Counter2 />
+    {/* <UseStateList /> */}
+    {/* <ConfirmButton /> */}
+    {/* <LandingPage /> */}
   </React.StrictMode>
   
 )

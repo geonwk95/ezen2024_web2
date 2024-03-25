@@ -23,7 +23,7 @@ export default function Counter( props ){
     console.log(상태관리변수[1]);
 
     const [ count , setCount ] = useState(0);
-
+    
     const [ inputValue1 , setInputValue1 ] = useState('');
 
     function inputValue1Update( e ){
