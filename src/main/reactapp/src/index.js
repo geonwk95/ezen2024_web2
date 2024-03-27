@@ -26,6 +26,21 @@ import ConfirmButton from './chapter8/ConfirmButton';
 // chapter9 실습
 import LandingPage from './chapter9/LandingPage';
 
+// chapter10 실습
+import AttendanceBook from './chapter10/AttendanceBook';
+
+// chapter11 실습
+import NameForm from './chapter11/NameForm';
+// import SignUp from './chapter11/SignUp';
+
+// chapter 0 
+import Axios컴포넌트 from './chapter0/Axios컴포넌트';
+
+import Route컴포넌트 from './chapter0/Route컴포넌트';
+import SignUp from './component/member/SignUp';
+
+import Index from './component/Index';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render( // !!!!!!!!!!!!! 여기가 렌더링 되는 곳 ~~~~~~~~~~~
 //   <React.StrictMode> // 엄격한 실행 모드 : 유효성 검사
@@ -42,10 +57,16 @@ root.render(
   <React.StrictMode>
     {/* <CommentList /> */}
     {/* <Counter /> */}
-    <Counter2 />
+    {/* <Counter2 /> */}
     {/* <UseStateList /> */}
     {/* <ConfirmButton /> */}
     {/* <LandingPage /> */}
+    {/* <AttendanceBook /> */}
+    {/* <NameForm /> */}
+    {/* <SignUp /> */}
+    {/* <Axios컴포넌트 /> */}
+    {/* <Route컴포넌트/> */}
+    <Index />
   </React.StrictMode>
   
 )
