@@ -45,7 +45,6 @@ public class MemberEntity extends BaseTime {
     public MemberDto toDto(){ // R
         return MemberDto.builder()
                 .mno( this.mno )
-                .mpassword( this.mpassword )
                 .mname( this.mname )
                 .memail( this.memail )
                 .mrol( this.mrol )

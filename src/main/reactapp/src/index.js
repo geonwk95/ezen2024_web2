@@ -19,6 +19,7 @@ import CommentList from './chapter5/CommentList';
 import Counter from './chapter7/Counter'; // 예제
 import UseStateList from './chapter7/UseStateList';
 import Counter2 from './chapter7/Counter2';
+import TextInputWithFocusButton from './chapter7/TextInputWithFocusButton';
 
 // chapter8 실습
 import ConfirmButton from './chapter8/ConfirmButton';
@@ -32,6 +33,15 @@ import AttendanceBook from './chapter10/AttendanceBook';
 // chapter11 실습
 import NameForm from './chapter11/NameForm';
 // import SignUp from './chapter11/SignUp';
+
+// chapter12 실습
+import Calculator from './chapter12/Calculator';
+
+// chapter13 실습
+import ProfileCard from './chapter13/ProfileCard';
+
+// chapter14 실습
+import DarkOrLight from './chapter14/DarkOrLight';
 
 // chapter 0 
 import Axios컴포넌트 from './chapter0/Axios컴포넌트';
@@ -59,6 +69,7 @@ root.render(
     {/* <Counter /> */}
     {/* <Counter2 /> */}
     {/* <UseStateList /> */}
+    {/* <TextInputWithFocusButton /> */}
     {/* <ConfirmButton /> */}
     {/* <LandingPage /> */}
     {/* <AttendanceBook /> */}
@@ -66,6 +77,10 @@ root.render(
     {/* <SignUp /> */}
     {/* <Axios컴포넌트 /> */}
     {/* <Route컴포넌트/> */}
+    {/* <Calculator /> */}
+    {/* <ProfileCard /> */}
+    {/* <DarkOrLight /> */}
+
     <Index />
   </React.StrictMode>
   

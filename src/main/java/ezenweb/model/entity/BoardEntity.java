@@ -1,5 +1,6 @@
 package ezenweb.model.entity;
 
+import ezenweb.model.dto.BoardDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -12,11 +13,12 @@ import java.util.List;
 @Entity // 해당 클래스와 연동DB내 테이블 과 매핑/연결 ( ORM (Object Relational Mapping) )
 @Table( name = "board" )
 @Builder
+@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class BoardEntity { // 테이블
+public class BoardEntity extends BaseTime{ // 테이블
     @Id // PK
     @GeneratedValue( strategy = GenerationType.IDENTITY ) // MySQL auto_increment
     private int bno; // 게시물번호
@@ -28,7 +30,7 @@ public class BoardEntity { // 테이블
     private int bview;
 
     // FK 필드
-    @JoinColumn( name = "mno" ) // fk필드명
+    @JoinColumn( name = "mno_fk" ) // fk필드명
     @ManyToOne // 해당 필드 참조
     private MemberEntity memberEntity;
 
@@ -38,6 +40,18 @@ public class BoardEntity { // 테이블
     // 양방향 : 댓글 FK
     private List<ReplyEntity> replyEntities = new ArrayList<>();
 
+    // - 게시물 출력
+    public BoardDto toDto(){
+        return BoardDto.builder()
+                .bno(this.bno)
+                .bcontent(this.bcontent)
+                .bview(this.bview)
+                .mno_fk(this.memberEntity.getMno())
+                .memail(this.memberEntity.getMemail())
+                .cdate(this.getCdate())
+                .udate(this.getUdate())
+                .build();
+    }
 }
 
 /*

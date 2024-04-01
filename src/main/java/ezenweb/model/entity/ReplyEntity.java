@@ -18,11 +18,11 @@ public class ReplyEntity {
     private String rcontent; // varchar(255)
 
     // FK 필드
-    @JoinColumn( name = "bno" ) // fk 필드명
+    @JoinColumn( name = "bno_fk" ) // fk 필드명
     @ManyToOne
     private BoardEntity boardEntity;
 
-    @JoinColumn( name = "mno" ) // fk 필드명
+    @JoinColumn( name = "mno_fk" ) // fk 필드명
     @ManyToOne
     private MemberEntity memberEntity;
 

@@ -1,11 +1,13 @@
 package ezenweb.controller;
 
+import ezenweb.model.dto.BoardDto;
 import ezenweb.model.dto.MemberDto;
 import ezenweb.model.entity.MemberEntity;
 import ezenweb.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -16,7 +18,7 @@ public class MemberController {
     MemberService memberService;
 
     @PostMapping("/signup/post.do") // 1. 회원가입
-    public boolean doSignUpPost(@RequestBody MemberDto memberDto ){
+    public byte doSignUpPost(@RequestBody MemberDto memberDto ){
         System.out.println("axios ~ MemberController.doSignUpPost");
         System.out.println("memberDto = " + memberDto);
 
@@ -41,5 +43,15 @@ public class MemberController {
     public MemberDto doLoginInfo(){
         System.out.println("MemberController.doLoginInfo");
         return memberService.doLoginInfo();
+    }
+
+    @GetMapping("/find/idcheck/get.do") // 5. 아이디 유효성검사
+    public byte doFindIdCheck( MemberDto memberDto ){
+
+        return memberService.doFindIdCheck( memberDto );
+    }
+    @GetMapping("/find/myboard/get.do")
+    public List<Map<Object,Object>> findByMyBoardList(){
+        return memberService.findByMyBoardList();
     }
 }
