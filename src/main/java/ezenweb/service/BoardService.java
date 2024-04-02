@@ -3,20 +3,24 @@ package ezenweb.service;
 import ezenweb.model.dto.BoardDto;
 import ezenweb.model.dto.MemberDto;
 import ezenweb.model.entity.BoardEntity;
+import ezenweb.model.entity.BoardPhotoEntity;
 import ezenweb.model.entity.MemberEntity;
 import ezenweb.model.entity.ReplyEntity;
 import ezenweb.model.repository.BoardEntityRepository;
+import ezenweb.model.repository.BoardPhotoEntityRepository;
 import ezenweb.model.repository.MemberEntityRepository;
 import ezenweb.model.repository.ReplyEntityRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BoardService {
@@ -28,6 +32,10 @@ public class BoardService {
     private ReplyEntityRepository replyEntityRepository;
     @Autowired
     private MemberService memberService;
+    @Autowired
+    private FileService fileService;
+    @Autowired
+    BoardPhotoEntityRepository boardPhotoEntityRepository;
 
     // 1. C
     @Transactional
@@ -42,9 +50,35 @@ public class BoardService {
         // 3. 엔티티 꺼내기
         MemberEntity memberEntity = optionalMemberEntity.get();
 
-            // 글쓰기
-            BoardEntity saveBoard = boardEntityRepository.save( boardDto.toEntity() );
-              System.out.println("saveBoard = " + saveBoard);
+        // 글쓰기
+        BoardEntity saveBoard = boardEntityRepository.save( boardDto.toEntity() );
+        System.out.println("saveBoard = " + saveBoard);
+
+
+        List<String> filenameList = new ArrayList<>();
+        boardDto.getUploadList().forEach( (e) -> {
+            String filename = fileService.fileUpload(e);
+             filenameList.add(filename);
+        });
+
+        List<BoardPhotoEntity> photoList = new ArrayList<>();
+        filenameList.forEach( (e) -> {
+            BoardPhotoEntity boardPhotoEntity = BoardPhotoEntity.builder()
+                    .photoname(e)
+                    .build();
+            photoList.add(boardPhotoEntity);
+        });
+
+        photoList.forEach( (e) -> {
+            BoardPhotoEntity boardPhotoEntity = boardPhotoEntityRepository.save( e );
+            System.out.println("boardPhotoEntity = " + boardPhotoEntity);
+
+            if (boardPhotoEntity.getPhotoname() != null ){
+                boardPhotoEntity.setBoardEntity(saveBoard);
+            }
+        });
+
+
             // - FK 대입
         if (saveBoard.getBno() >= 1){ // 글쓰기 성공했으면
             saveBoard.setMemberEntity( memberEntity );
@@ -55,6 +89,8 @@ public class BoardService {
     // 2. R
     @Transactional
     public List<BoardDto> getBoard(){
+        // =============================== 1 ============================== //
+        /*
         // 1. 리포지토리를 이용한 모든 엔티티를 호출
         List<BoardEntity> result = boardEntityRepository.findAll();
         System.out.println("result = " + result);
@@ -70,6 +106,11 @@ public class BoardService {
             boardDtoList.add( boardDto );
         }
         return boardDtoList;
+         */
+        // =============================== 1 ============================== //
+        return boardEntityRepository.findAll().stream().map( (boardEntity) -> {
+            return boardEntity.toDto();
+        }).collect(Collectors.toList());
     }
     // 3. U
     @Transactional

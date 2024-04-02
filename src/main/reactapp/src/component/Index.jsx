@@ -22,7 +22,7 @@ export default function Index(props){
     const [ loginInfo , setLoginInfo ] = useState('');
 
     return(<>
-                <LoginInfoContext.Provider value={ { loginInfo , setLoginInfo } } >
+        <LoginInfoContext.Provider value={ { loginInfo , setLoginInfo } } >
             <BrowserRouter>
                 <div id="wrap">
                     <Header />

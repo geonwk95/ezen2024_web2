@@ -1,16 +1,16 @@
 import axios from "axios";
-import { useState } from "react";
+import { useRef } from "react";
 
 export default function Write(props){
     
-    // 1. state 변수
-    const [ bcontent , setBcontent ] = useState("");
-
-    // 2. 전송 함수
-    const onWirte = ( e ) => {
-        console.log( bcontent );
+    // 1. 재렌더링 고정 참조 변수
+    const boardWriteFormRef = useRef(); // {current : undefined}
+    console.log( boardWriteFormRef );
         
-        axios.post("/board/post.do" , { bcontent : bcontent })
+    const onWirte = (  ) => {
+        console.log( boardWriteFormRef );   console.log( boardWriteFormRef.current );
+                
+        axios.post("/board/post.do" , boardWriteFormRef.current ) // axios contentType : multipart
             .then( response => { console.log( response );
                 if( response.data ){
                     alert("글쓰기 성공");
@@ -23,8 +23,9 @@ export default function Write(props){
     }
 
     return(<>
-        <form>
-            내용 : <input type="text" value={bcontent} onChange={ (e) => { setBcontent(e.target.value); }} />
+        <form ref={ boardWriteFormRef }>
+            내용 : <input name="bcontent" type="text"   />
+            <input type="file" name="uploadList" multiple accept="image/*"/>
             <button type="button" onClick={onWirte}>등록</button>
         </form>
     </>)

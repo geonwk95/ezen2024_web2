@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity // 해당 클래스와 연동DB내 테이블 과 매핑/연결 ( ORM (Object Relational Mapping) )
 @Table( name = "board" )
@@ -40,6 +41,13 @@ public class BoardEntity extends BaseTime{ // 테이블
     // 양방향 : 댓글 FK
     private List<ReplyEntity> replyEntities = new ArrayList<>();
 
+    // 양방향 설정
+    @OneToMany( mappedBy = "boardEntity")
+    @ToString.Exclude
+    @Builder.Default
+    private List<BoardPhotoEntity> boardPhotoEntityList = new ArrayList<>();
+
+
     // - 게시물 출력
     public BoardDto toDto(){
         return BoardDto.builder()
@@ -48,6 +56,11 @@ public class BoardEntity extends BaseTime{ // 테이블
                 .bview(this.bview)
                 .mno_fk(this.memberEntity.getMno())
                 .memail(this.memberEntity.getMemail())
+                .photonameList(
+                        this.boardPhotoEntityList.stream().map(
+                                ( photo ) -> { return photo.getPhotoname(); }
+                        ).collect( Collectors.toList() )
+                )
                 .cdate(this.getCdate())
                 .udate(this.getUdate())
                 .build();

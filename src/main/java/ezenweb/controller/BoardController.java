@@ -15,7 +15,7 @@ public class BoardController {
     private BoardService boardService;
 
     @PostMapping("/post.do")
-    public boolean postBoard(@RequestBody BoardDto boardDto){return boardService.postBoard(boardDto) ;}
+    public boolean postBoard(BoardDto boardDto){return boardService.postBoard(boardDto) ;}
     @GetMapping("/get.do")
     public List<BoardDto> getBoard(){
         return boardService.getBoard();

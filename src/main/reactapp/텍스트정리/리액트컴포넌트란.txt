@@ -222,7 +222,7 @@ useEffect() 이란 ? p.218
 	useEffect( () => { } , [ 의존성배열 ])
 
 useRef() 이란 ?
-	1. 정의 : 매변 랜더링 될 때마다 항상 같은 ref 객체를 반환하는 훅
+	1. 정의 : 매번 랜더링 될 때마다 항상 같은 ref 객체를 반환하는 훅
 	2. 사용법
 		1. 선언 : const refValue = useRef( 초기값 );	
 		2. 호출 : refValue
