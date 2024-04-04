@@ -10,7 +10,7 @@ export default function Write(props){
     const onWirte = (  ) => {
         console.log( boardWriteFormRef );   console.log( boardWriteFormRef.current );
                 
-        axios.post("/board/post.do" , boardWriteFormRef.current ) // axios contentType : multipart
+        axios.post("/board/post.do" , boardWriteFormRef.current ) // axios contentType : multipart/Form
             .then( response => { console.log( response );
                 if( response.data ){
                     alert("글쓰기 성공");

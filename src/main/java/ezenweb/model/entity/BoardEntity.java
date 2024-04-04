@@ -35,14 +35,14 @@ public class BoardEntity extends BaseTime{ // 테이블
     @ManyToOne // 해당 필드 참조
     private MemberEntity memberEntity;
 
-    @OneToMany( mappedBy = "boardEntity")
+    @OneToMany( mappedBy = "boardEntity" , cascade = CascadeType.ALL )
     @ToString.Exclude // 해당 객체 호출시 해당 필드는 호출하지 않는다.
     @Builder.Default // 빌더패턴 사용시 해당 필드의 초기값을 빌더 초기값으로 사용
     // 양방향 : 댓글 FK
     private List<ReplyEntity> replyEntities = new ArrayList<>();
 
     // 양방향 설정
-    @OneToMany( mappedBy = "boardEntity")
+    @OneToMany( mappedBy = "boardEntity" , cascade = CascadeType.ALL )
     @ToString.Exclude
     @Builder.Default
     private List<BoardPhotoEntity> boardPhotoEntityList = new ArrayList<>();

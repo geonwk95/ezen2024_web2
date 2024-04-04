@@ -47,6 +47,7 @@ public class FileService {
         // new File( 파일경로 );
         File file = new File(uplodePath+filename);
         System.out.println("file = " + file);   // 경로
+        // exists() : 파일이 있냐 없냐 T / F
         System.out.println("file.exists() : " + file.exists());
 
         // 1-2. [무엇을] 첨부파일 객체
